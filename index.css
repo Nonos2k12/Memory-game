@@ -1,0 +1,54 @@
+@font-face {
+    font-family: lato;
+    src: url('fonts/lato.regular.ttf');
+  }
+
+body {
+    overflow-x: hidden;
+    background-image: url('image/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    font-family: lato;
+  }
+
+td > img {
+    cursor: pointer;
+    width: 12vh;
+    height: 18vh;
+    background-color: transparent;
+}
+
+button, .modal-header {
+    background-color: #712b37 !important;
+  }
+
+#board {
+    margin-top: 5%;
+    visibility: hidden;
+}
+
+#chrono {
+  width: 25px;
+  height: 25px;
+  top: -3px;
+}
+
+#molette {
+    width: 30px;
+    height: 30px;
+    top: 10px; 
+    right: 9px;
+}
+
+#reset_game {
+  background-color: #0d6efd ! important;
+}
+
+#timer {
+  text-align: center;
+  font-size: xx-large;
+  color: white;
+  background-color: #712b37 ;
+}

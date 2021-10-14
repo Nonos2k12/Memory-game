@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />-->	
+</head>
+<body style="margin:0;padding:0;overflow:hidden;">
+	<header >
+		
+	</header>
+	<div id="content" class="w-100 h-100">
+		
+	</div>
+	<script type="text/javascript" src="./js/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="./js/bootstrap.min.js"></script>-->
+
+	<script type="text/javascript">
+	var number_of_cards = 12;
+
+	function setupBoard() {
+		const window_width = $(window)[0].outerWidth;
+		const window_height = $(window)[0].outerHeight;
+		const window_ratio = window_width / window_height; // square 1:1
+
+		const card_ratio = 0.666; // width on height
+
+		let col = Math.max(1, Math.round(Math.sqrt( (1/ card_ratio) * number_of_cards * window_ratio)));
+		let row = Math.round(number_of_cards / col);
+		if (col*row != number_of_cards) { // Hotfix to reduce "too much cards"
+			console.log("hit happens");
+			if (col * card_ratio > row)
+				col--;
+			else
+				row--;
+		}
+
+		console.log('col', col, 'row', row, 'for a collection of ', number_of_cards, 'and ratio of ', window_ratio);
+
+		// Get maximum card size in each dimension
+		var card_width = (window_width / col);
+		var card_height = (window_height / row);
+		
+		// Setup correct ratio
+		if (card_width > card_height) {// if limited by height
+			card_width = card_height;
+			card_width = card_width * card_ratio;
+		}
+		else { // if limited by width
+			card_height = card_width;
+			card_height = card_width / card_ratio;
+		}
+
+		// Because changing card ratio may overflow window
+		if (card_height * row > window_height) {
+			const height_resize_ratio = window_height / (card_height * row);
+			card_height *= height_resize_ratio;
+			card_width = card_height * card_ratio;
+		} else if (card_width * col > window_width) {
+			const width_resize_ratio = window_width / (card_width * col);
+			card_width *= width_resize_ratio;
+			card_height = card_width / card_ratio;
+		}
+
+		var table_html = '<table>';
+		var i = 0;
+		for (y = 0; y < row; y++) {
+			table_html += "<tr>";
+			for (x = 0; x < col; x++) {
+				let color = (i < number_of_cards) ? 'purple' : 'red';
+				table_html += '<td><center>';
+				table_html += `<div style='width:${card_width-8}px;height:${card_height-8}px;background-color:${color};border-width:4px;'></div>`;
+				table_html += "</center></td>";
+				i++;
+			}
+			table_html += "</tr>";
+		}
+		table_html += "</table>";
+
+		$("#content").html(table_html);
+
+	}
+	setupBoard();
+
+	$(window).on("resize", setupBoard);
+	</script>
+</body>
+</html>

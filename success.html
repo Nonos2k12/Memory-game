@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title id="title" class="translation"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+  	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="js/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+
+  <body>
+    <div id="success" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-white">
+            <h5 id="success_title" class="translation modal-title mx-auto"></h5>
+          </div>
+          <div class="modal-body text-center">
+            <p>Votre temps : 
+              <script type="text/javascript">
+              let timer_score = sessionStorage.getItem('timer');
+              document.write(timer_score)
+           </script> secondes</p>
+            <p id="success_text" class="translation"></p>
+          </div>
+          <div class="modal-footer">
+            <button id="reset_game" type="button" class="translation btn btn-primary mx-auto text-white" onclick="resetGame()">
+            </button>
+            <button id="success_button" type="button" class="translation btn mx-auto text-white" onclick="closeGame()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/sound.js"></script>
+    <script type="text/javascript" src="./translations.js"></script> 
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
